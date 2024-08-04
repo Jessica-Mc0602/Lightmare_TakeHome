@@ -10,11 +10,11 @@ using InfinityHeros.News;
 
 public class NewsManager : MonoBehaviour
 {
-    public Button downloadButton;
-    public GameObject newsArticlePrefab;
-    public Transform newsContainer;
+    public Button downloadButton; // Button to trigger article download
+    public GameObject newsArticlePrefab; // Prefab for a news article
+    public Transform newsContainer; // Container to hold news article prefabs
 
-    private NewsClient newsClient;
+    private NewsClient newsClient; // Instance of NewsClient to fetch articles
     void Start()
     {
         newsClient = new NewsClient();
@@ -38,9 +38,56 @@ public class NewsManager : MonoBehaviour
             StartCoroutine(TextureStreamer.ReadFromURL(article.ImageURL, (texture) =>
             {
                 GameObject articleGO = Instantiate(newsArticlePrefab, newsContainer);
-                articleGO.transform.Find("Title").GetComponent<TextMeshProUGUI>().text = article.Title;
-                articleGO.transform.Find("Contents").GetComponent<TextMeshProUGUI>().text = article.Contents;
-                articleGO.transform.Find("Image").GetComponent<RawImage>().texture = texture;
+                Debug.Log("Instantiated article prefab");
+
+                var titleTransform = articleGO.transform.Find("Title");
+                if (titleTransform == null) Debug.LogError("Title child not found");
+
+                var contentsTransform = articleGO.transform.Find("Contents");
+                if (contentsTransform == null) Debug.LogError("Contents child not found");
+
+                var imageTransform = articleGO.transform.Find("Image");
+                if (imageTransform == null) Debug.LogError("Image child not found");
+
+                if (titleTransform != null)
+                {
+                    var titleComponent = titleTransform.GetComponent<TextMeshProUGUI>();
+                    if (titleComponent != null)
+                    {
+                        titleComponent.text = article.Title;
+                    }
+                    else
+                    {
+                        Debug.LogError("TextMeshProUGUI component not found on Title child");
+                    }
+                }
+
+                if (contentsTransform != null)
+                {
+                    var contentsComponent = contentsTransform.GetComponent<TextMeshProUGUI>();
+                    if (contentsComponent != null)
+                    {
+                        contentsComponent.text = article.Contents;
+                    }
+                    else
+                    {
+                        Debug.LogError("TextMeshProUGUI component not found on Contents child");
+                    }
+                }
+
+                if (imageTransform != null)
+                {
+                    var imageComponent = imageTransform.GetComponent<RawImage>();
+                    if (imageComponent != null)
+                    {
+                        imageComponent.texture = texture;
+                    }
+                    else
+                    {
+                        Debug.LogError("RawImage component not found on Image child");
+                    }
+                }
+
                 articleGO.GetComponent<Button>().onClick.AddListener(() => article.ArticleSource.Open());
             }));
         }
