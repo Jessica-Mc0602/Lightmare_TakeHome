@@ -43,11 +43,11 @@ public class NewsManager : MonoBehaviour
                 var titleTransform = articleGO.transform.Find("Title");
                 if (titleTransform == null) Debug.LogError("Title child not found");
 
-                var contentsTransform = articleGO.transform.Find("Contents");
-                if (contentsTransform == null) Debug.LogError("Contents child not found");
-
                 var imageTransform = articleGO.transform.Find("Image");
                 if (imageTransform == null) Debug.LogError("Image child not found");
+
+                var contentsTransform = articleGO.transform.Find("Contents");
+                if (contentsTransform == null) Debug.LogError("Contents child not found");
 
                 if (titleTransform != null)
                 {
@@ -59,19 +59,6 @@ public class NewsManager : MonoBehaviour
                     else
                     {
                         Debug.LogError("TextMeshProUGUI component not found on Title child");
-                    }
-                }
-
-                if (contentsTransform != null)
-                {
-                    var contentsComponent = contentsTransform.GetComponent<TextMeshProUGUI>();
-                    if (contentsComponent != null)
-                    {
-                        contentsComponent.text = article.Contents;
-                    }
-                    else
-                    {
-                        Debug.LogError("TextMeshProUGUI component not found on Contents child");
                     }
                 }
 
@@ -88,6 +75,18 @@ public class NewsManager : MonoBehaviour
                     }
                 }
 
+                if (contentsTransform != null)
+                {
+                    var contentsComponent = contentsTransform.GetComponent<TextMeshProUGUI>();
+                    if (contentsComponent != null)
+                    {
+                        contentsComponent.text = article.Contents;
+                    }
+                    else
+                    {
+                        Debug.LogError("TextMeshProUGUI component not found on Contents child");
+                    }
+                }
                 articleGO.GetComponent<Button>().onClick.AddListener(() => article.ArticleSource.Open());
             }));
         }

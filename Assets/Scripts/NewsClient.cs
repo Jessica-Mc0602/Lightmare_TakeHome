@@ -24,13 +24,14 @@ namespace InfinityHeros.News.Framework
 
             using (m_CurrentRequest)
             {
-                yield return m_CurrentRequest.SendWebRequest();
+                yield return m_CurrentRequest.SendWebRequest(); //Wait for the request to complete
                 Debug.Log(m_CurrentRequest.result);
 
-                if (m_CurrentRequest.result != UnityWebRequest.Result.Success && m_CurrentRequest.result != UnityWebRequest.Result.InProgress)
+                if (m_CurrentRequest.result != UnityWebRequest.Result.Success)
                 {
                     Debug.LogError($"Error fetching articles: {m_CurrentRequest.error}");
                     callback(new SteamNewsResponse(m_CurrentRequest.error));
+                    m_CurrentRequest = null; //Clear the current request after completion
                     yield break;
                 }
 
@@ -39,6 +40,7 @@ namespace InfinityHeros.News.Framework
                 {
                     Debug.LogError("Error: response body is null or empty");
                     callback(new SteamNewsResponse("Response body is null or empty"));
+                    m_CurrentRequest = null; //Clear the current request after completion
                     yield break;
                 }
                 Debug.Log($"Response Body: {responseBody}");
@@ -50,6 +52,7 @@ namespace InfinityHeros.News.Framework
                     {
                         Debug.LogError("Error: deserialized SteamNewsResponse is null");
                         callback(new SteamNewsResponse("Deserialized response is null"));
+                        m_CurrentRequest = null; //Clear the current request after completion
                         yield break;
                     }
                     callback(steamResponse);
@@ -59,6 +62,7 @@ namespace InfinityHeros.News.Framework
                     Debug.LogError($"Exception during JSON dersericaliztion: {ex.Message}");
                     callback(new SteamNewsResponse(ex.Message));
                 }
+                m_CurrentRequest = null; //Clear the current request after completion
             }
         }        
     }
