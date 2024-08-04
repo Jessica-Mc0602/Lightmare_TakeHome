@@ -7,6 +7,7 @@ using TMPro;
 using InfinityHeros.News.Framework;
 using InfinityHeros.News.Steam;
 using InfinityHeros.News;
+using System.Text.RegularExpressions;
 
 public class NewsManager : MonoBehaviour
 {
@@ -80,7 +81,19 @@ public class NewsManager : MonoBehaviour
                     var contentsComponent = contentsTransform.GetComponent<TextMeshProUGUI>();
                     if (contentsComponent != null)
                     {
-                        contentsComponent.text = article.Contents;
+                        //Clean HTML content
+                        var cleanedContent = CleanHtmlContent(article.Contents);
+                        // Split the content into lines, skip the first line, and join the rest
+                        var contentLines = cleanedContent.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                        if(contentLines.Length >1)
+                        {
+                            var modifiedContents = string.Join("\n", contentLines, 1, contentLines.Length - 1);
+                            contentsComponent.text = modifiedContents;
+                        }
+                        else
+                        {
+                            contentsComponent.text = cleanedContent; // Fallback if there's only one line
+                        }
                     }
                     else
                     {
@@ -90,5 +103,29 @@ public class NewsManager : MonoBehaviour
                 articleGO.GetComponent<Button>().onClick.AddListener(() => article.ArticleSource.Open());
             }));
         }
+    }
+
+    string CleanHtmlContent(string content)
+    {
+        // Replace custom tags with TextMeshPro equivalents
+        content = Regex.Replace(content, @"\[b\]", "<b>");
+        content = Regex.Replace(content, @"\[/b\]", "</b>");
+        content = Regex.Replace(content, @"\[i\]", "<i>");
+        content = Regex.Replace(content, @"\[/i\]", "</i>");
+        content = Regex.Replace(content, @"\[h1\]", "<size=32>");
+        content = Regex.Replace(content, @"\[/h1\]", "</size>");
+        content = Regex.Replace(content, @"\[h2\]", "<size=28>");
+        content = Regex.Replace(content, @"\[/h2\]", "</size>");
+        content = Regex.Replace(content, @"\[h3\]", "<size=26>");
+        content = Regex.Replace(content, @"\[/h3\]", "</size>");
+
+        // Replace custom URL tags with TextMeshPro link tags
+        content = Regex.Replace(content, @"\[url=(.*?)\]", "<link=\"$1\">");
+        content = Regex.Replace(content, @"\[/url\]", "</link>");
+
+        // Remove remaining custom tags
+        content = Regex.Replace(content, @"\[.*?\]", string.Empty);
+
+        return content;
     }
 }
