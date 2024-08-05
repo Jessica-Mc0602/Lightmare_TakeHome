@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 194636954}
   - component: {fileID: 194636953}
   - component: {fileID: 194636952}
-  - component: {fileID: 194636955}
   m_Layer: 5
   m_Name: LargeArticleHolder
   m_TagString: Untagged
@@ -163,8 +162,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -240.69998}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -240.70001}
+  m_SizeDelta: {x: 1294.17, y: 1365.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &194636952
 MonoBehaviour:
@@ -184,7 +183,7 @@ MonoBehaviour:
     m_Top: 20
     m_Bottom: 0
   m_ChildAlignment: 1
-  m_Spacing: 0
+  m_Spacing: 25
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -230,20 +229,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 194636950}
   m_CullTransparentMesh: 1
---- !u!114 &194636955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 194636950}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalFit: 2
-  m_VerticalFit: 2
 --- !u!1 &254685195
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,7 +416,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -63.783}
-  m_SizeDelta: {x: 1015.56, y: 884.1}
+  m_SizeDelta: {x: 1367.1653, y: 884.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &935904861
 MonoBehaviour:
@@ -462,10 +447,10 @@ MonoBehaviour:
   m_Horizontal: 0
   m_Vertical: 1
   m_MovementType: 1
-  m_Elasticity: 1
-  m_Inertia: 1
+  m_Elasticity: 10
+  m_Inertia: 0
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1.59
+  m_ScrollSensitivity: 9
   m_Viewport: {fileID: 0}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 0}
@@ -799,6 +784,10 @@ MonoBehaviour:
   downloadButton: {fileID: 1504726114}
   newsArticlePrefab: {fileID: 4406747025469628279, guid: e80a8632b803988478f467d766ac7f19, type: 3}
   newsContainer: {fileID: 254685196}
+  largeNewsArticlePanel: {fileID: 935904859}
+  largeArticleTitle: {fileID: 1503823133}
+  largeArticleImage: {fileID: 1434663231}
+  largeArticleContent: {fileID: 1826232042}
 --- !u!4 &993973295
 Transform:
   m_ObjectHideFlags: 0
@@ -923,7 +912,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 937.56, y: 165.75}
+  m_SizeDelta: {x: 1289.17, y: 165.75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1503823133
 MonoBehaviour:
@@ -974,15 +963,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1182,7 +1171,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 937.56, y: 670.8}
+  m_SizeDelta: {x: 1289.17, y: 670.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1826232042
 MonoBehaviour:
@@ -1213,7 +1202,7 @@ MonoBehaviour:
     dignissim netus facilisis vel dolor dis nibh. Conubia vestibulum et velit cursus
     quis vehicula hendrerit ridiculus.
 
-    
+
 
     Semper vel ultricies nullam senectus
     purus venenatis litora elit. Sit euismod vehicula tempus hendrerit sapien. Rutrum
@@ -1222,7 +1211,7 @@ MonoBehaviour:
     dignissim porta feugiat fusce augue. Sociosqu aliquam lectus semper fringilla
     suscipit. Ultricies duis eleifend in aptent fusce quam, arcu lobortis.
 
-    
+
 
     Amet
     habitant quam lacinia blandit facilisis urna praesent viverra. Quam facilisis
@@ -1233,7 +1222,7 @@ MonoBehaviour:
     consequat torquent, felis penatibus velit mollis. Sit ligula nec pellentesque
     ac himenaeos scelerisque consectetur netus nec.
 
-    
+
 
     Etiam montes tristique
     phasellus maximus elit tortor per. Volutpat consequat integer facilisi; pharetra
@@ -1241,7 +1230,7 @@ MonoBehaviour:
     laoreet. Sit pulvinar iaculis quisque duis maximus porta. Laoreet feugiat platea
     quis; tortor sodales elit. Nisl primis morbi vehicula mattis ad facilisis tristique.
 
-    
+
 
     Aenean
     bibendum et accumsan justo lacus nascetur urna nostra. Montes eros sapien suscipit

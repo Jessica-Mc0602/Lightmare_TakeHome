@@ -14,12 +14,13 @@ public class NewsManager : MonoBehaviour
     public Button downloadButton; // Button to trigger article download
     public GameObject newsArticlePrefab; // Prefab for a news article
     public Transform newsContainer; // Container to hold news article prefabs
-
+    
     private NewsClient newsClient; // Instance of NewsClient to fetch articles
     void Start()
     {
         newsClient = new NewsClient();
-        downloadButton.onClick.AddListener(OnDownloadButtonClicked);
+        downloadButton.onClick.AddListener(OnDownloadButtonClicked);  
+        newsArticlePrefab.SetActive(true);
     }
 
     void OnDownloadButtonClicked()
@@ -104,6 +105,7 @@ public class NewsManager : MonoBehaviour
             }));
         }
     }
+
 
     string CleanHtmlContent(string content)
     {
