@@ -1,0 +1,17 @@
+{
+  "name": "jessica-mc0602.programming.test",
+  "displayName": "Lightmare Programming Test - News Article Streaming",
+  "description": "Project that retrieves News Articles using the existing systems within this package",
+  "version": "1.0.0",
+  "unity": "2021.3",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jessica-Mc0602/Lightmare_TakeHome.git"
+  },
+  "author": {
+    "name": "Jessica-Mc0602",
+    "url": "https://github.com/Jessica-Mc0602"
+  },
+  "dependencies": {}
+}
