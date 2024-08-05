@@ -12,7 +12,6 @@ using System.Text.RegularExpressions;
 public class NewsManager : MonoBehaviour
 {
     public Button downloadButton; // Button to trigger article download
-    public Button clearButton; // Button to clear all articles    
     public GameObject newsArticlePrefab; // Prefab for a news article
     public Transform newsContainer; // Container to hold news article prefabs
     
@@ -20,8 +19,8 @@ public class NewsManager : MonoBehaviour
     void Start()
     {
         newsClient = new NewsClient();
-        downloadButton.onClick.AddListener(OnDownloadButtonClicked);
-        clearButton.onClick.AddListener(ClearArticles);
+        downloadButton.onClick.AddListener(OnDownloadButtonClicked);  
+        newsArticlePrefab.SetActive(true);
     }
 
     void OnDownloadButtonClicked()
@@ -56,18 +55,26 @@ public class NewsManager : MonoBehaviour
                 {
                     var titleComponent = titleTransform.GetComponent<TextMeshProUGUI>();
                     if (titleComponent != null)
+                    {
                         titleComponent.text = article.Title;
+                    }
                     else
+                    {
                         Debug.LogError("TextMeshProUGUI component not found on Title child");
+                    }
                 }
 
                 if (imageTransform != null)
                 {
                     var imageComponent = imageTransform.GetComponent<RawImage>();
                     if (imageComponent != null)
+                    {
                         imageComponent.texture = texture;
+                    }
                     else
+                    {
                         Debug.LogError("RawImage component not found on Image child");
+                    }
                 }
 
                 if (contentsTransform != null)
@@ -122,13 +129,5 @@ public class NewsManager : MonoBehaviour
         content = Regex.Replace(content, @"\[.*?\]", string.Empty);
 
         return content;
-    }
-
-    void ClearArticles()
-    {
-        foreach(Transform child in newsContainer)
-        {
-            Destroy(child.gameObject);
-        }
     }
 }
