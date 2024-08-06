@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.shadowignition.lm.programming.test": {
+      "version": "https://github.com/ShadowIgnition/LM-Programming-Test.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "ae443cd9ce10bb2bd72642aa7d96db612fa3a503"
+    },
     "com.unity.2d.animation": {
       "version": "7.1.0",
       "depth": 1,
@@ -225,12 +232,6 @@
         "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
-    },
-    "jessica-mc0602.programming.test": {
-      "version": "file:LightmareTakeHome",
-      "depth": 0,
-      "source": "embedded",
-      "dependencies": {}
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
