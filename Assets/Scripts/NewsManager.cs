@@ -12,6 +12,7 @@ using System.Text.RegularExpressions;
 public class NewsManager : MonoBehaviour
 {
     public Button downloadButton; // Button to trigger article download
+    public Button clearButton; // Button to clear articles
     public GameObject newsArticlePrefab; // Prefab for a news article
     public Transform newsContainer; // Container to hold news article prefabs
     
@@ -19,8 +20,8 @@ public class NewsManager : MonoBehaviour
     void Start()
     {
         newsClient = new NewsClient();
-        downloadButton.onClick.AddListener(OnDownloadButtonClicked);  
-        newsArticlePrefab.SetActive(true);
+        downloadButton.onClick.AddListener(OnDownloadButtonClicked);
+        clearButton.onClick.AddListener(ClearArticles);
     }
 
     void OnDownloadButtonClicked()
@@ -129,5 +130,12 @@ public class NewsManager : MonoBehaviour
         content = Regex.Replace(content, @"\[.*?\]", string.Empty);
 
         return content;
+    }
+    void ClearArticles()
+    {
+        foreach (Transform child in newsContainer)
+        {
+            Destroy(child.gameObject);
+        }
     }
 }
